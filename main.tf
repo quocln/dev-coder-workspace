@@ -45,9 +45,6 @@ resource "coder_agent" "main" {
     # Create workspace directory if it doesn't exist
     mkdir -p /home/coder/workspace
 
-    code-server --install-extension /tmp/github.copilot.vsix
-    code-server --install-extension /tmp/github.copilot-chat.vsix
-
     # Add any commands that should be executed at workspace startup
     # (e.g. install requirements, start a program, etc) here.
   EOT
@@ -154,18 +151,6 @@ resource "coder_script" "init_docker_in_docker" {
   run_on_start = true
   icon         = "/icon/docker.svg"
   script       = file("${path.module}/scripts/init-docker-in-docker.sh")
-}
-
-# See https://registry.coder.com/modules/coder/devcontainers-cli
-module "devcontainers-cli" {
-  count    = data.coder_workspace.me.start_count
-  source   = "registry.coder.com/coder/devcontainers-cli/coder"
-  agent_id = coder_agent.main.id
-
-  # This ensures that the latest non-breaking version of the module gets
-  # downloaded, you can also pin the module version to prevent breaking
-  # changes in production.
-  version = "~> 1.0"
 }
 
 module "code-server" {
