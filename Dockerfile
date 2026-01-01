@@ -57,6 +57,13 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Add claude alias
 RUN echo 'alias clauded="claude --dangerously-skip-permissions"' >> /home/coder/.bash_aliases
+
+RUN echo 'export GITHUB_TOKEN=""' >> /home/coder/.bash_export
+RUN echo 'export AMP_URL=""' >> /home/coder/.bash_export
+RUN echo 'export AMP_API_KEY=""' >> /home/coder/.bash_export
+RUN echo 'export GEMINI_API_KEY=""' >> /home/coder/.bash_export
+RUN echo 'eval "$(~/.local/bin/mise activate bash)"' >> /home/coder/.bash_export
+
 RUN npm install -g @fresh-editor/fresh-editor
 RUN npm install -g @google/gemini-cli
 
