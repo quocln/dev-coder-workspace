@@ -53,14 +53,10 @@ RUN mise install node@20 && \
     mise install rust@latest && \
     mise global node@20 python@3.12 go@latest pnpm@latest bun@latest rust@latest
 
-RUN curl -o /tmp/github.copilot.vsix -LSsf \
-      "https://github.gallery.vsassets.io/_apis/public/gallery/publisher/github/extension/copilot/latest/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
-    
-RUN curl -o /tmp/github.copilot-chat.vsix -LSsf \
-      "https://github.gallery.vsassets.io/_apis/public/gallery/publisher/github/extension/copilot-chat/latest/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage"
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Add claude alias
-RUN echo 'alias clauded="claude --dangerously-skip-permissions"' >> /home/coder/.bashrc
+RUN echo 'alias clauded="claude --dangerously-skip-permissions"' >> /home/coder/.bash_aliases
 RUN npm install -g @fresh-editor/fresh-editor
 RUN npm install -g @google/gemini-cli
 
