@@ -1,7 +1,7 @@
 ---
 display_name: Dev Containers
 description: Provision Docker containers as Coder workspaces.
-icon: ../../../site/static/icon/docker.png
+icon: /icon/docker.png
 maintainer_github: coder
 verified: true
 tags: [docker, container]
